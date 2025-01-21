@@ -1,0 +1,312 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Shankar School of Music Annual Function Registration</title>
+  <style>
+    /* General Styles */
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    body {
+      font-family: 'Poppins', sans-serif;
+      background: #000; /* Black background */
+      color: #ffeb3b; /* Yellow text */
+      display: flex;
+      justify-content: center;
+      align-items: flex-start; /* Changed to flex-start for scrolling */
+      min-height: 100vh;
+      padding: 20px;
+      overflow-y: auto; /* Allow vertical scrolling */
+    }
+
+    .form-container {
+      background: rgba(255, 235, 59, 0.1); /* Semi-transparent yellow */
+      backdrop-filter: blur(10px);
+      border-radius: 15px;
+      padding: 2rem;
+      max-width: 600px;
+      width: 100%;
+      box-shadow: 0 8px 32px rgba(255, 235, 59, 0.2); /* Yellow shadow */
+      border: 1px solid rgba(255, 235, 59, 0.2); /* Yellow border */
+      position: relative;
+      z-index: 1;
+      margin: 20px 0; /* Added margin for spacing */
+    }
+
+    h1 {
+      text-align: center;
+      font-size: 2.5rem;
+      margin-bottom: 1.5rem;
+      color: #ffeb3b; /* Yellow */
+      text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.5); /* Black shadow */
+    }
+
+    h2 {
+      text-align: center;
+      font-size: 1.75rem;
+      margin-bottom: 1.5rem;
+      color: #ffeb3b; /* Yellow */
+      text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.5); /* Black shadow */
+    }
+
+    .poster-content {
+      text-align: center;
+      margin-bottom: 2rem;
+    }
+
+    .poster-content h3 {
+      font-size: 2rem;
+      color: #ffeb3b; /* Yellow */
+      text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.5); /* Black shadow */
+    }
+
+    .poster-content p {
+      font-size: 1.25rem;
+      color: #fff; /* White text */
+      margin-bottom: 0.5rem;
+    }
+
+    label {
+      display: block;
+      margin-bottom: 0.5rem;
+      font-weight: 600;
+      color: #ffeb3b; /* Yellow */
+    }
+
+    input[type="text"],
+    input[type="number"],
+    input[type="tel"],
+    select {
+      width: 100%;
+      padding: 0.75rem;
+      margin-bottom: 1rem;
+      border: none;
+      border-radius: 8px;
+      font-size: 1rem;
+      background: rgba(255, 235, 59, 0.2); /* Semi-transparent yellow */
+      color: #fff; /* White text */
+      transition: background 0.3s ease, transform 0.3s ease;
+    }
+
+    input[type="text"]:focus,
+    input[type="number"]:focus,
+    input[type="tel"]:focus,
+    select:focus {
+      background: rgba(255, 235, 59, 0.3); /* Brighter yellow on focus */
+      transform: scale(1.02);
+      outline: none;
+    }
+
+    .instructions {
+      background: rgba(0, 0, 0, 0.3); /* Semi-transparent black */
+      padding: 1rem;
+      border-radius: 8px;
+      margin-bottom: 1.5rem;
+    }
+
+    .instructions h3 {
+      margin-top: 0;
+      color: #ffeb3b; /* Yellow */
+      font-size: 1.25rem;
+      margin-bottom: 0.5rem;
+    }
+
+    .instructions ul {
+      padding-left: 1.5rem;
+    }
+
+    .instructions ul li {
+      margin-bottom: 0.5rem;
+      color: #fff; /* White text */
+    }
+
+    .submit-btn {
+      width: 100%;
+      padding: 1rem;
+      background: #ffeb3b; /* Yellow */
+      color: #000; /* Black text */
+      border: none;
+      border-radius: 8px;
+      font-size: 1rem;
+      font-weight: 600;
+      cursor: pointer;
+      transition: transform 0.3s ease, box-shadow 0.3s ease;
+    }
+
+    .submit-btn:hover {
+      transform: translateY(-3px);
+      box-shadow: 0 4px 15px rgba(255, 235, 59, 0.5); /* Yellow shadow */
+    }
+
+    /* Progress Bar */
+    .progress-container {
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 10px;
+      background: rgba(255, 235, 59, 0.2); /* Semi-transparent yellow */
+      z-index: 1000;
+    }
+
+    .progress-bar {
+      height: 100%;
+      background: #ffeb3b; /* Yellow */
+      width: 0;
+      transition: width 0.5s ease;
+    }
+
+    /* Help Icon */
+    .help-icon {
+      position: fixed;
+      bottom: 20px;
+      right: 20px;
+      background: #ffeb3b; /* Yellow */
+      color: #000; /* Black text */
+      width: 40px;
+      height: 40px;
+      border-radius: 50%;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      font-size: 1.2rem;
+      font-weight: 600;
+      cursor: pointer;
+      box-shadow: 0 4px 15px rgba(255, 235, 59, 0.5); /* Yellow shadow */
+      transition: transform 0.3s ease, box-shadow 0.3s ease;
+    }
+
+    .help-icon:hover {
+      transform: translateY(-3px);
+      box-shadow: 0 6px 20px rgba(255, 235, 59, 0.7); /* Brighter shadow */
+    }
+
+    /* Responsive Design */
+    @media (max-width: 600px) {
+      h1 {
+        font-size: 2rem;
+      }
+
+      h2 {
+        font-size: 1.5rem;
+      }
+
+      .form-container {
+        padding: 1.5rem;
+      }
+    }
+  </style>
+</head>
+<body>
+  <!-- Progress Bar -->
+  <div class="progress-container">
+    <div class="progress-bar" id="progress-bar"></div>
+  </div>
+
+  <!-- Help Icon -->
+  <div class="help-icon" onclick="alert('Call for help: 9463189389 | 8837620703')">
+    ?
+  </div>
+
+  <!-- Form Container -->
+  <div class="form-container">
+    <!-- Poster Content -->
+    <div class="poster-content">
+      <h3>Shankar School of Music</h3>
+      <h2>Annual Function</h2>
+      <p><strong>Date:</strong> 14 February 2025</p>
+      <p><strong>Time:</strong> 4 PM to 7 PM</p>
+      <p><strong>Venue:</strong> Punjab Kala Bhavan, Sector 18, Chandigarh</p>
+    </div>
+
+    <!-- Registration Form -->
+    <form id="registration-form" action="#" method="post">
+      <label for="student-name">Student Name:</label>
+      <input type="text" id="student-name" name="student-name" placeholder="Enter your name, e.g., John Doe" required oninput="updateProgress()" onkeypress="moveToNextField(event, 'father-name')">
+
+      <label for="father-name">Father's Name:</label>
+      <input type="text" id="father-name" name="father-name" placeholder="Enter your father's name, e.g., Rajesh Kumar" required oninput="updateProgress()" onkeypress="moveToNextField(event, 'mother-name')">
+
+      <label for="mother-name">Mother's Name:</label>
+      <input type="text" id="mother-name" name="mother-name" placeholder="Enter your mother's name, e.g., Sunita Devi" required oninput="updateProgress()" onkeypress="moveToNextField(event, 'age')">
+
+      <label for="age">Age:</label>
+      <input type="number" id="age" name="age" placeholder="Enter your age, e.g., 15" required oninput="updateProgress()" onkeypress="moveToNextField(event, 'address')">
+
+      <label for="address">Address:</label>
+      <input type="text" id="address" name="address" placeholder="Enter your address, e.g., 123 Main Street" required oninput="updateProgress()" onkeypress="moveToNextField(event, 'phone')">
+
+      <label for="phone">Phone Number:</label>
+      <input type="tel" id="phone" name="phone" placeholder="Enter your phone number, e.g., +91 94631 89389" required oninput="updateProgress()" onkeypress="moveToNextField(event, 'subject')">
+
+      <label for="subject">Subject:</label>
+      <input type="text" id="subject" name="subject" placeholder="Enter your subject, e.g., Music" required oninput="updateProgress()" onkeypress="moveToNextField(event, 'teacher-name')">
+
+      <label for="teacher-name">Teacher's Name:</label>
+      <input type="text" id="teacher-name" name="teacher-name" placeholder="Enter your teacher's name, e.g., Mr. Sharma" required oninput="updateProgress()" onkeypress="moveToNextField(event, 'fee-paid')">
+
+      <label for="fee-paid">Fee Paid (Y/N):</label>
+      <select id="fee-paid" name="fee-paid" required oninput="updateProgress()">
+        <option value="yes">Yes</option>
+        <option value="no">No</option>
+      </select>
+
+      <!-- Instructions -->
+      <div class="instructions">
+        <h3>Important Instructions</h3>
+        <ul>
+          <li>The registration fee is <strong>non-refundable</strong>.</li>
+          <li>Once enrolled, students <strong>cannot back out</strong>.</li>
+          <li>All students must attend rehearsals as per the teacher's guidelines.</li>
+          <li>Only <strong>75 slots</strong> are available (first-come, first-served).</li>
+        </ul>
+      </div>
+
+      <!-- Submit Button -->
+      <button type="submit" class="submit-btn">Submit Registration</button>
+    </form>
+  </div>
+
+  <script>
+    // Progress Bar Based on Fields Filled
+    function updateProgress() {
+      const inputs = document.querySelectorAll('input, select');
+      let filled = 0;
+      inputs.forEach(input => {
+        if (input.value.trim() !== '') filled++;
+      });
+      const progress = (filled / inputs.length) * 100;
+      document.getElementById('progress-bar').style.width = `${progress}%`;
+    }
+
+    // Auto-Focus on Next Field
+    function moveToNextField(event, nextFieldId) {
+      if (event.key === 'Enter') {
+        event.preventDefault();
+        document.getElementById(nextFieldId).focus();
+      }
+    }
+
+    // Confetti Animation on Submission
+    document.getElementById('registration-form').addEventListener('submit', (e) => {
+      e.preventDefault();
+      for (let i = 0; i < 100; i++) {
+        const confetti = document.createElement('div');
+        confetti.classList.add('confetti');
+        confetti.style.left = `${Math.random() * 100}vw`;
+        confetti.style.animationDelay = `${Math.random()}s`;
+        document.body.appendChild(confetti);
+      }
+      setTimeout(() => {
+        alert('Thank you for registering!');
+        window.location.reload();
+      }, 2000);
+    });
+  </script>
+</body>
+</html>
