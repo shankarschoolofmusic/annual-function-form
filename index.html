@@ -81,6 +81,7 @@
     input[type="text"],
     input[type="number"],
     input[type="tel"],
+    input[type="email"],
     select {
       width: 100%;
       padding: 0.75rem;
@@ -96,6 +97,7 @@
     input[type="text"]:focus,
     input[type="number"]:focus,
     input[type="tel"]:focus,
+    input[type="email"]:focus,
     select:focus {
       background: rgba(255, 235, 59, 0.3); /* Brighter yellow on focus */
       transform: scale(1.02);
@@ -271,6 +273,45 @@
         padding: 1.5rem;
       }
     }
+
+    /* Social Media Sharing */
+    .social-share {
+      text-align: center;
+      margin-top: 1.5rem;
+    }
+
+    .social-share a {
+      color: #ffeb3b; /* Yellow */
+      text-decoration: none;
+      margin: 0 0.5rem;
+      font-weight: 600;
+    }
+
+    .social-share a:hover {
+      text-decoration: underline;
+    }
+
+    /* Follow Us Section */
+    .follow-us {
+      text-align: center;
+      margin-top: 1.5rem;
+    }
+
+    .follow-us h3 {
+      color: #ffeb3b; /* Yellow */
+      margin-bottom: 1rem;
+    }
+
+    .follow-us a {
+      color: #ffeb3b; /* Yellow */
+      text-decoration: none;
+      margin: 0 0.5rem;
+      font-weight: 600;
+    }
+
+    .follow-us a:hover {
+      text-decoration: underline;
+    }
   </style>
 </head>
 <body>
@@ -298,28 +339,31 @@
     <!-- Registration Form -->
     <form name="registration-form" method="POST" netlify action="/success.html">
       <label for="student-name">Student Name:</label>
-      <input type="text" id="student-name" name="student-name" placeholder="Enter your name, e.g., John Doe" required oninput="updateProgress()" onkeypress="moveToNextField(event, 'father-name')">
+      <input type="text" id="student-name" name="student-name" required oninput="updateProgress()" onkeypress="moveToNextField(event, 'father-name')">
 
       <label for="father-name">Father's Name:</label>
-      <input type="text" id="father-name" name="father-name" placeholder="Enter your father's name, e.g., Rajesh Kumar" required oninput="updateProgress()" onkeypress="moveToNextField(event, 'mother-name')">
+      <input type="text" id="father-name" name="father-name" required oninput="updateProgress()" onkeypress="moveToNextField(event, 'mother-name')">
 
       <label for="mother-name">Mother's Name:</label>
-      <input type="text" id="mother-name" name="mother-name" placeholder="Enter your mother's name, e.g., Sunita Devi" required oninput="updateProgress()" onkeypress="moveToNextField(event, 'age')">
+      <input type="text" id="mother-name" name="mother-name" required oninput="updateProgress()" onkeypress="moveToNextField(event, 'age')">
 
       <label for="age">Age:</label>
-      <input type="number" id="age" name="age" placeholder="Enter your age, e.g., 15" required oninput="updateProgress()" onkeypress="moveToNextField(event, 'address')">
+      <input type="number" id="age" name="age" required oninput="updateProgress()" onkeypress="moveToNextField(event, 'address')">
 
       <label for="address">Address:</label>
-      <input type="text" id="address" name="address" placeholder="Enter your address, e.g., 123 Main Street" required oninput="updateProgress()" onkeypress="moveToNextField(event, 'phone')">
+      <input type="text" id="address" name="address" required oninput="updateProgress()" onkeypress="moveToNextField(event, 'phone')">
 
       <label for="phone">Phone Number:</label>
-      <input type="tel" id="phone" name="phone" placeholder="Enter your phone number, e.g., +91 94631 89389" required oninput="updateProgress()" onkeypress="moveToNextField(event, 'subject')">
+      <input type="tel" id="phone" name="phone" required oninput="validatePhone()" onkeypress="moveToNextField(event, 'email')">
+
+      <label for="email">Email:</label>
+      <input type="email" id="email" name="email" required oninput="validateEmail()" onkeypress="moveToNextField(event, 'subject')">
 
       <label for="subject">Subject:</label>
-      <input type="text" id="subject" name="subject" placeholder="Enter your subject, e.g., Music" required oninput="updateProgress()" onkeypress="moveToNextField(event, 'teacher-name')">
+      <input type="text" id="subject" name="subject" required oninput="updateProgress()" onkeypress="moveToNextField(event, 'teacher-name')">
 
       <label for="teacher-name">Teacher's Name:</label>
-      <input type="text" id="teacher-name" name="teacher-name" placeholder="Enter your teacher's name, e.g., Mr. Sharma" required oninput="updateProgress()" onkeypress="moveToNextField(event, 'fee-paid')">
+      <input type="text" id="teacher-name" name="teacher-name" required oninput="updateProgress()" onkeypress="moveToNextField(event, 'fee-paid')">
 
       <label for="fee-paid">Fee Paid (Y/N):</label>
       <select id="fee-paid" name="fee-paid" required oninput="updateProgress()">
@@ -347,8 +391,34 @@
       </div>
 
       <!-- Submit Button -->
-      <button type="submit" class="submit-btn" id="submit-btn" disabled>Submit Registration</button>
+      <button type="button" class="submit-btn" onclick="showConfirmation()">Submit Registration</button>
     </form>
+
+    <!-- Social Media Sharing -->
+    <div class="social-share">
+      <p>Share this event:</p>
+      <a href="https://www.instagram.com/" target="_blank" onclick="shareOnInstagram()">Instagram</a>
+      <a href="https://www.facebook.com/sharer/sharer.php?u=https://shankarschoolofmusicannualfunction.netlify.app/" target="_blank">Facebook</a>
+      <a href="https://api.whatsapp.com/send?text=Check%20out%20this%20event:%20https://shankarschoolofmusicannualfunction.netlify.app/" target="_blank">WhatsApp</a>
+    </div>
+
+    <!-- Follow Us on Social Media -->
+    <div class="follow-us">
+      <h3>Follow Us on Social Media</h3>
+      <a href="https://www.instagram.com/" target="_blank">Instagram</a>
+      <a href="https://www.facebook.com/" target="_blank">Facebook</a>
+      <a href="https://twitter.com/" target="_blank">Twitter</a>
+    </div>
+  </div>
+
+  <!-- Confirmation Modal -->
+  <div id="confirmation-modal" class="modal">
+    <div class="modal-content">
+      <span class="close" onclick="hideConfirmation()">&times;</span>
+      <h3>Confirm Your Details</h3>
+      <div id="confirmation-details"></div>
+      <button type="button" onclick="submitForm()">Confirm and Submit</button>
+    </div>
   </div>
 
   <!-- Terms and Conditions Modal -->
@@ -386,10 +456,47 @@
       }
     }
 
-    // Enable/Disable Submit Button Based on Terms Checkbox
-    document.getElementById('terms').addEventListener('change', function () {
-      document.getElementById('submit-btn').disabled = !this.checked;
-    });
+    // Validate Phone Number
+    function validatePhone() {
+      const phone = document.getElementById('phone').value.replace(/\D/g, '');
+      if (phone.length !== 10) {
+        document.getElementById('phone').setCustomValidity('Please enter a valid 10-digit phone number.');
+      } else {
+        document.getElementById('phone').setCustomValidity('');
+      }
+    }
+
+    // Validate Email
+    function validateEmail() {
+      const email = document.getElementById('email').value;
+      const emailPattern = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+      if (!emailPattern.test(email)) {
+        document.getElementById('email').setCustomValidity('Please enter a valid email address.');
+      } else {
+        document.getElementById('email').setCustomValidity('');
+      }
+    }
+
+    // Show Confirmation Modal
+    function showConfirmation() {
+      const formData = new FormData(document.getElementById('registration-form'));
+      let details = '';
+      formData.forEach((value, key) => {
+        details += `<p><strong>${key}:</strong> ${value}</p>`;
+      });
+      document.getElementById('confirmation-details').innerHTML = details;
+      document.getElementById('confirmation-modal').style.display = 'flex';
+    }
+
+    // Hide Confirmation Modal
+    function hideConfirmation() {
+      document.getElementById('confirmation-modal').style.display = 'none';
+    }
+
+    // Submit Form
+    function submitForm() {
+      document.getElementById('registration-form').submit();
+    }
 
     // Show Terms and Conditions Modal
     function showTerms() {
@@ -401,6 +508,12 @@
       document.getElementById('terms-modal').style.display = 'none';
     }
 
+    // Share on Instagram
+    function shareOnInstagram() {
+      window.open('https://www.instagram.com/', '_blank');
+      alert('Please share the event manually on Instagram. Event link: https://shankarschoolofmusicannualfunction.netlify.app/');
+    }
+
     // Close Modal When Clicking Outside
     window.onclick = function (event) {
       const modal = document.getElementById('terms-modal');
@@ -408,27 +521,6 @@
         modal.style.display = 'none';
       }
     };
-
-    // Confetti Animation on Submission
-    document.getElementById('registration-form').addEventListener('submit', (e) => {
-      e.preventDefault();
-      if (!document.getElementById('terms').checked) {
-        alert('Please agree to the terms and conditions before submitting.');
-        return;
-      }
-      // Confetti Animation
-      for (let i = 0; i < 100; i++) {
-        const confetti = document.createElement('div');
-        confetti.classList.add('confetti');
-        confetti.style.left = `${Math.random() * 100}vw`;
-        confetti.style.animationDelay = `${Math.random()}s`;
-        document.body.appendChild(confetti);
-      }
-      setTimeout(() => {
-        alert('Thank you for registering!');
-        window.location.reload();
-      }, 2000);
-    });
   </script>
 </body>
 </html>
