@@ -186,6 +186,77 @@
       box-shadow: 0 6px 20px rgba(255, 235, 59, 0.7); /* Brighter shadow */
     }
 
+    /* Terms Container */
+    .terms-container {
+      margin-bottom: 1.5rem;
+    }
+
+    .terms-container label {
+      color: #fff; /* White text */
+      font-weight: 400;
+    }
+
+    .terms-container a {
+      color: #ffeb3b; /* Yellow */
+      text-decoration: underline;
+      cursor: pointer;
+    }
+
+    /* Modal */
+    .modal {
+      display: none;
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      background: rgba(0, 0, 0, 0.8); /* Semi-transparent black */
+      justify-content: center;
+      align-items: center;
+      z-index: 1000;
+    }
+
+    .modal-content {
+      background: rgba(255, 235, 59, 0.1); /* Semi-transparent yellow */
+      backdrop-filter: blur(10px);
+      border-radius: 15px;
+      padding: 2rem;
+      max-width: 500px;
+      width: 100%;
+      box-shadow: 0 8px 32px rgba(255, 235, 59, 0.2); /* Yellow shadow */
+      border: 1px solid rgba(255, 235, 59, 0.2); /* Yellow border */
+      color: #fff; /* White text */
+    }
+
+    .modal-content h3 {
+      color: #ffeb3b; /* Yellow */
+      margin-bottom: 1rem;
+    }
+
+    .modal-content p {
+      margin-bottom: 1rem;
+    }
+
+    .close {
+      color: #ffeb3b; /* Yellow */
+      float: right;
+      font-size: 1.5rem;
+      font-weight: bold;
+      cursor: pointer;
+    }
+
+    .close:hover {
+      color: #fff; /* White */
+    }
+
+    /* Disabled Submit Button */
+    .submit-btn:disabled {
+      background: rgba(255, 235, 59, 0.5); /* Semi-transparent yellow */
+      cursor: not-allowed;
+      transform: none;
+      box-shadow: none;
+    }
+
     /* Responsive Design */
     @media (max-width: 600px) {
       h1 {
@@ -267,9 +338,32 @@
         </ul>
       </div>
 
+      <!-- Terms and Conditions Checkbox -->
+      <div class="terms-container">
+        <label for="terms">
+          <input type="checkbox" id="terms" name="terms" required>
+          I have read and agree to the <a href="#terms-modal" onclick="showTerms()">Terms and Conditions</a>.
+        </label>
+      </div>
+
       <!-- Submit Button -->
-      <button type="submit" class="submit-btn">Submit Registration</button>
+      <button type="submit" class="submit-btn" id="submit-btn" disabled>Submit Registration</button>
     </form>
+  </div>
+
+  <!-- Terms and Conditions Modal -->
+  <div id="terms-modal" class="modal">
+    <div class="modal-content">
+      <span class="close" onclick="hideTerms()">&times;</span>
+      <h3>Terms and Conditions</h3>
+      <p>
+        1. The registration fee is non-refundable.<br>
+        2. Once enrolled, students cannot back out.<br>
+        3. All students must attend rehearsals as per the teacher's guidelines.<br>
+        4. Only 75 slots are available (first-come, first-served).<br>
+        5. By submitting this form, you agree to abide by the rules and regulations of Shankar School of Music.
+      </p>
+    </div>
   </div>
 
   <script>
@@ -292,9 +386,37 @@
       }
     }
 
+    // Enable/Disable Submit Button Based on Terms Checkbox
+    document.getElementById('terms').addEventListener('change', function () {
+      document.getElementById('submit-btn').disabled = !this.checked;
+    });
+
+    // Show Terms and Conditions Modal
+    function showTerms() {
+      document.getElementById('terms-modal').style.display = 'flex';
+    }
+
+    // Hide Terms and Conditions Modal
+    function hideTerms() {
+      document.getElementById('terms-modal').style.display = 'none';
+    }
+
+    // Close Modal When Clicking Outside
+    window.onclick = function (event) {
+      const modal = document.getElementById('terms-modal');
+      if (event.target === modal) {
+        modal.style.display = 'none';
+      }
+    };
+
     // Confetti Animation on Submission
     document.getElementById('registration-form').addEventListener('submit', (e) => {
       e.preventDefault();
+      if (!document.getElementById('terms').checked) {
+        alert('Please agree to the terms and conditions before submitting.');
+        return;
+      }
+      // Confetti Animation
       for (let i = 0; i < 100; i++) {
         const confetti = document.createElement('div');
         confetti.classList.add('confetti');
